@@ -64,19 +64,37 @@ main{display:grid;grid-template-columns:1fr;gap:14px}
 @keyframes blink{0%,94%,100%{transform:scaleY(0)}97%{transform:scaleY(1)}}
 .face-g{transition:transform .3s}
 #skin,#lipsTop,#lipsBot,#blushL,#blushR,#shadowL,#shadowR,#hairMain,#hairFringe{transition:fill .35s}
+
+/* Steps */
+.steps{display:flex;gap:6px;align-items:center;font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.steps span{padding:6px 10px;border-radius:999px;background:#fff}
+.steps span.on{background:var(--accent);color:#fff}
+.steps i{opacity:.5;font-style:normal}
+section[hidden]{display:none}
+/* Dressing */
+.dressing{position:relative;background:linear-gradient(180deg,#fff6f9,#ffe4ee);border-radius:28px;box-shadow:0 0 0 6px #fff,0 0 0 10px var(--accent2),0 24px 50px rgba(120,40,70,.2);padding:10px;max-width:420px;width:100%;margin:0 auto;overflow:hidden}
+.dressing::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 38px,rgba(255,79,139,.06) 38px 40px)}
+.dressing svg{width:100%;height:auto;display:block;position:relative;max-height:72vh}
+/* Podium */
+.podium{position:relative;background:radial-gradient(ellipse at 50% 0,#4a1d3a,#1c0a18 70%);border-radius:28px;overflow:hidden;max-width:520px;width:100%;margin:0 auto;aspect-ratio:3/4;box-shadow:0 30px 60px rgba(60,10,40,.5)}
+.spot{position:absolute;top:-10%;width:40%;height:120%;background:linear-gradient(180deg,rgba(255,255,255,.35),rgba(255,255,255,0) 70%);clip-path:polygon(45% 0,55% 0,100% 100%,0 100%);transform-origin:top center;animation:sweep 4s ease-in-out infinite alternate;pointer-events:none}
+.spot.a{left:5%;animation-delay:-1s}.spot.b{left:30%;animation-delay:-2.5s}.spot.c{left:55%}
+@keyframes sweep{from{transform:rotate(-14deg)}to{transform:rotate(14deg)}}
+.stage{position:absolute;left:0;right:0;bottom:0;height:22%;background:linear-gradient(180deg,#ff6aa8,#c2185b);clip-path:polygon(15% 0,85% 0,100% 100%,0 100%)}
+.stage::after{content:"";position:absolute;left:0;right:0;top:0;height:30%;background:rgba(255,255,255,.35)}
+.model{position:absolute;left:50%;bottom:15%;height:74%;transform:translateX(-50%);animation:walk 1.2s ease-in-out infinite;transform-origin:bottom center;filter:drop-shadow(0 12px 10px rgba(0,0,0,.45))}
+.model svg{height:100%;width:auto;display:block}
+@keyframes walk{0%,100%{transform:translateX(-50%) translateY(0) rotate(-1.5deg)}50%{transform:translateX(-50%) translateY(-10px) rotate(1.5deg)}}
+.banner{position:absolute;top:14px;left:0;right:0;text-align:center;font-family:var(--display);font-size:clamp(22px,5vw,34px);color:#ffe3a3;text-shadow:0 0 20px #ff4f8b,0 2px 0 #7a1b4a}
+.stars{position:absolute;top:60px;left:0;right:0;text-align:center;color:#ffd166;font-size:22px;letter-spacing:4px;text-shadow:0 0 12px #ff9}
+.confetti{position:absolute;top:-10px;width:8px;height:14px;border-radius:2px;animation:fall linear forwards;pointer-events:none}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:.6}}
+.center{justify-content:center}
+#skinBody{transition:fill .35s}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 
-<div class="wrap">
-<header>
-  <h1>Glam Studio ✨</h1>
-  <div class="score">Glam points <b id="points">0</b></div>
-</header>
-<main>
-  <div class="mirror" id="mirror">
-    <div class="bulbs" id="bulbs"></div>
-    <svg id="face" viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg" aria-label="Bimbo à maquiller" style="--skin:#f2c4a4">
-      <defs>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">      <defs>
         <clipPath id="faceClip"><path d="M200 90 C122 90 96 160 102 245 C107 320 150 400 200 400 C250 400 293 320 298 245 C304 160 278 90 200 90 Z"/></clipPath>
         <clipPath id="eyeL"><path d="M112 242 C122 212 176 208 190 240 C178 262 126 264 112 242Z"/></clipPath>
         <clipPath id="eyeR"><path d="M288 242 C278 212 224 208 210 240 C222 262 274 264 288 242Z"/></clipPath>
@@ -85,11 +103,23 @@ main{display:grid;grid-template-columns:1fr;gap:14px}
         <radialGradient id="shine" cx=".5" cy=".3" r=".6"><stop offset="0" stop-color="#fff" stop-opacity=".9"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
         <linearGradient id="hairShine" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".35"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/></linearGradient>
         <filter id="blur4"><feGaussianBlur stdDeviation="4"/></filter>
-      </defs>
+      </defs></svg>
+<div class="wrap">
+<header>
+  <h1>Glam Studio ✨</h1>
+  <div class="score">Glam points <b id="points">0</b></div>
+</header>
+<div class="steps" id="steps"><span class="on">1 Maquillage</span><i>›</i><span>2 Dressing</span><i>›</i><span>3 Podium</span></div>
+<section id="step1">
+<main>
+  <div class="mirror" id="mirror">
+    <div class="bulbs" id="bulbs"></div>
+    <svg id="face" viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg" aria-label="Bimbo à maquiller" style="--skin:#f2c4a4">
+
       <g id="hairBack"></g>
       <!-- shoulders & neck -->
       <path d="M70 500 C80 445 135 428 165 422 L235 422 C265 428 320 445 330 500 Z" fill="#ff5fa2" id="top"/>
-      <path d="M90 500 C100 462 140 446 166 440 L234 440 C260 446 300 462 310 500Z" fill="#fff" opacity=".25"/>
+      <path id="topShine" d="M90 500 C100 462 140 446 166 440 L234 440 C260 446 300 462 310 500Z" fill="#fff" opacity=".25"/>
       <path d="M166 372 L166 432 Q200 452 234 432 L234 372 Z" fill="var(--skin)" id="neck"/>
       <path d="M166 372 L166 400 Q200 418 234 400 L234 372Z" fill="#000" opacity=".16"/>
       <!-- ears -->
@@ -163,10 +193,70 @@ main{display:grid;grid-template-columns:1fr;gap:14px}
       <button class="btn" id="undo">↩ Annuler</button>
       <button class="btn gold" id="random">🎲 Look surprise</button>
       <button class="btn" id="reset">🧼 Démaquiller</button>
-      <button class="btn primary" id="photo">📸 Photo</button>
+      <button class="btn" id="photo">📸 Photo</button>
+      <button class="btn primary" id="next1">Suivant : Habiller 👗</button>
     </div>
   </aside>
 </main>
+</section>
+
+<section id="step2" hidden>
+<main>
+  <div class="dressing" id="dressing">
+    <svg id="body" viewBox="0 0 400 980" xmlns="http://www.w3.org/2000/svg" aria-label="Bimbo à habiller" style="--skin:#f2c4a4">
+      <g id="headSlot" transform="translate(90,0) scale(.55)"></g>
+      <!-- body -->
+      <g id="skinBody" fill="var(--skin)">
+        <!-- arms -->
+        <path d="M128 262 C112 290 104 360 100 440 C98 470 108 478 116 474 C128 468 126 440 128 420 C134 380 142 330 150 290Z"/>
+        <path d="M272 262 C288 290 296 360 300 440 C302 470 292 478 284 474 C272 468 274 440 272 420 C266 380 258 330 250 290Z"/>
+        <!-- torso -->
+        <path d="M181 240 L219 240 C250 244 275 258 282 300 C290 350 276 400 270 440 C262 480 276 530 268 560 L132 560 C124 530 138 480 130 440 C124 400 110 350 118 300 C125 258 150 244 181 240Z"/>
+        <!-- legs -->
+        <path d="M134 540 C128 640 136 760 142 880 L146 920 L186 920 L190 880 C194 760 196 640 198 540Z"/>
+        <path d="M266 540 C272 640 264 760 258 880 L254 920 L214 920 L210 880 C206 760 204 640 202 540Z"/>
+      </g>
+      <g fill="#000" opacity=".1"><path d="M132 560 C140 600 150 700 150 800 L142 880 L146 920 L160 920 C160 800 150 700 146 560Z"/><path d="M118 300 C112 360 122 420 130 440 L140 440 C130 400 124 350 128 300Z"/></g>
+      <!-- base underwear -->
+      <g fill="#f7bfd0"><path d="M126 300 C150 285 250 285 274 300 L278 350 C250 365 150 365 122 350Z"/><path d="M134 530 L266 530 L262 585 C235 600 165 600 138 585Z"/></g>
+      <g id="shoes"></g>
+      <g id="bottom"></g>
+      <g id="top2"></g>
+      <g id="dress"></g>
+      <g id="bag"></g>
+    </svg>
+  </div>
+  <aside class="drawer">
+    <div class="tabs" role="tablist" id="tabs2"></div>
+    <p class="panel-title" id="panelTitle2">Robe</p>
+    <div class="swatches" id="swatches2"></div>
+    <div class="actions">
+      <button class="btn" id="back2">← Maquillage</button>
+      <button class="btn" id="undo2">↩ Annuler</button>
+      <button class="btn gold" id="random2">🎲 Tenue surprise</button>
+      <button class="btn primary" id="next2">Défilé sur le podium ✨</button>
+    </div>
+  </aside>
+</main>
+</section>
+
+<section id="step3" hidden>
+<main style="grid-template-columns:1fr">
+  <div class="podium" id="podium">
+    <div class="spot a"></div><div class="spot b"></div><div class="spot c"></div>
+    <div class="banner">Glam Fashion Show</div>
+    <div class="stars" id="stars">★★★★★</div>
+    <div class="stage"></div>
+    <div class="model" id="model"></div>
+  </div>
+  <div class="actions center">
+    <button class="btn" id="back3">← Dressing</button>
+    <button class="btn" id="photo3">📸 Photo</button>
+    <button class="btn gold" id="again">🎲 Nouveau look</button>
+    <button class="btn primary" id="restart">🧼 Recommencer</button>
+  </div>
+</main>
+</section>
 </div>
 <div class="toast" id="toast"></div>
 <div class="photo" id="photoBox"><div class="frame"><button class="close" id="closePhoto" aria-label="Fermer">×</button><div id="photoSvg"></div><p>Mon look du jour 💕</p></div></div>
@@ -254,6 +344,7 @@ function render(){
  $('#glasses').innerHTML=glassSVG[s.glasses]();
  $('#hat').innerHTML=hatSVG[s.hat]();
  $('#stickers').innerHTML=stickerSVG[s.stickers]();
+ renderBody();
  $('#points').textContent=points;
  markPressed();
 }
@@ -303,6 +394,95 @@ $('#random').onclick=()=>{history.push({...state});
 $('#photo').onclick=()=>{$('#photoSvg').innerHTML=$('#face').outerHTML;$('#photoBox').classList.add('show');burst(null,null,25)};
 $('#closePhoto').onclick=()=>$('#photoBox').classList.remove('show');
 $('#photoBox').addEventListener('click',e=>{if(e.target.id==='photoBox')$('#photoBox').classList.remove('show')});
+
+/* ---------- Dressing ---------- */
+const dresses=[['none','Aucune'],['short','Courte'],['long','Longue'],['mermaid','Sirène'],['tutu','Tutu']];
+const tops=[['tshirt','T-shirt'],['crop','Crop top'],['tank','Débardeur'],['blouse','Blouse']];
+const bottoms=[['jean','Jean'],['skirt','Jupe'],['shorts','Short'],['maxi','Jupe longue']];
+const shoesL=[['sneakers','Baskets'],['heels','Talons'],['boots','Bottes'],['flats','Ballerines']];
+const bags=[['none','Aucun'],['hand','Sac à main'],['tote','Cabas'],['clutch','Pochette']];
+const clothColors=[['#ff4f8b','Rose'],['#ff8fb6','Rose pâle'],['#d7263d','Rouge'],['#3b5bdb','Bleu'],['#1c1c1c','Noir'],['#ffffff','Blanc'],['#f5c66b','Or'],['#7f5bd6','Violet'],['#4a9a6a','Vert'],['#58c7d6','Turquoise'],['#8a5a3a','Marron'],['#ffb347','Orange']];
+const cats2=[
+ {id:'dress',label:'👗 Robe',opts:dresses,type:'icon'},
+ {id:'top',label:'👚 Haut',opts:tops,type:'icon'},
+ {id:'bottom',label:'👖 Bas',opts:bottoms,type:'icon'},
+ {id:'shoes',label:'👠 Chaussures',opts:shoesL,type:'icon'},
+ {id:'bag',label:'👜 Sac',opts:bags,type:'icon'},
+ {id:'topColor',label:'🎨 Couleur haut/robe',opts:clothColors,type:'color'},
+ {id:'bottomColor',label:'🎨 Couleur bas',opts:clothColors,type:'color'},
+ {id:'shoeColor',label:'🎨 Couleur chaussures',opts:clothColors,type:'color'},
+];
+Object.assign(icons,{short:'👗',long:'💃',mermaid:'🧜‍♀️',tutu:'🩰',tshirt:'👕',crop:'👚',tank:'🎽',blouse:'👔',jean:'👖',skirt:'🩳',shorts:'🩳',maxi:'🧣',sneakers:'👟',heels:'👠',boots:'👢',flats:'🥿',hand:'👜',tote:'🛍️',clutch:'💼'});
+Object.assign(def,{dress:'none',top:'tshirt',bottom:'jean',shoes:'sneakers',bag:'none',topColor:'#ff4f8b',bottomColor:'#3b5bdb',shoeColor:'#ffffff'});
+state={...def};
+const shadeOf=c=>`<path d="M0 0" fill="none"/>`;
+const topSVG={
+ tshirt:c=>`<path d="M118 268 C140 252 260 252 282 268 L306 330 L278 342 L270 310 L268 548 L132 548 L130 310 L122 342 L94 330Z" fill="${c}"/><path d="M181 258 Q200 282 219 258" fill="var(--skin)"/><path d="M268 310 L270 548 L250 548 C246 400 258 350 268 310Z" fill="#000" opacity=".12"/>`,
+ crop:c=>`<path d="M118 268 C140 252 260 252 282 268 L306 330 L278 342 L270 310 L268 380 L132 380 L130 310 L122 342 L94 330Z" fill="${c}"/><path d="M181 258 Q200 282 219 258" fill="var(--skin)"/>`,
+ tank:c=>`<path d="M136 270 L150 300 L250 300 L264 270 L272 290 L270 548 L132 548 L128 290Z" fill="${c}"/><path d="M150 300 Q200 330 250 300 L250 300 L150 300Z" fill="#000" opacity=".08"/>`,
+ blouse:c=>`<path d="M118 268 C140 252 260 252 282 268 C292 320 300 400 296 470 L272 474 L270 548 L268 548 L132 548 L128 474 L104 470 C100 400 108 320 118 268Z" fill="${c}"/><path d="M181 258 L200 300 L219 258 L230 262 L200 320 L170 262Z" fill="#fff" opacity=".85"/><path d="M194 310 L206 310 L203 460 L197 460Z" fill="#000" opacity=".15"/>`,
+};
+const bottomSVG={
+ jean:c=>`<path d="M132 540 L268 540 L266 560 C274 700 262 800 258 920 L214 920 L212 800 L204 620 L196 620 L188 800 L186 920 L142 920 C138 800 126 700 134 560Z" fill="${c}"/><path d="M196 620 L204 620 L212 800 L214 920 L204 920 L198 800Z" fill="#000" opacity=".2"/><path d="M134 560 Q200 580 266 560" stroke="#fff" stroke-opacity=".5" stroke-width="2" fill="none"/>`,
+ skirt:c=>`<path d="M130 540 L270 540 L300 680 Q200 700 100 680Z" fill="${c}"/><path d="M270 540 L300 680 Q250 690 220 688 L230 540Z" fill="#000" opacity=".12"/>`,
+ shorts:c=>`<path d="M132 540 L268 540 L278 630 L206 636 L200 600 L194 636 L122 630Z" fill="${c}"/>`,
+ maxi:c=>`<path d="M130 540 L270 540 L312 900 Q200 930 88 900Z" fill="${c}"/><path d="M270 540 L312 900 Q260 912 232 910 L228 540Z" fill="#000" opacity=".12"/>`,
+};
+const dressSVG={
+ none:()=>'',
+ short:c=>`<path d="M136 270 L150 300 L250 300 L264 270 L272 290 L270 460 L300 680 Q200 700 100 680 L130 460 L128 290Z" fill="${c}"/><path d="M270 460 L300 680 Q250 690 220 688 L232 460Z" fill="#000" opacity=".12"/><path d="M130 460 L270 460" stroke="#fff" stroke-opacity=".5" stroke-width="3"/>`,
+ long:c=>`<path d="M118 268 C140 252 260 252 282 268 L306 330 L278 342 L270 310 L270 470 L316 910 Q200 940 84 910 L130 470 L130 310 L122 342 L94 330Z" fill="${c}"/><path d="M181 258 Q200 290 219 258" fill="var(--skin)"/><path d="M270 470 L316 910 Q260 925 236 920 L240 470Z" fill="#000" opacity=".12"/>`,
+ mermaid:c=>`<path d="M126 300 C150 285 250 285 274 300 L278 350 L270 470 C268 600 272 700 248 790 C260 850 300 880 320 930 Q200 960 80 930 C100 880 140 850 152 790 C128 700 132 600 130 470 L122 350Z" fill="${c}"/><path d="M248 790 C260 850 300 880 320 930 Q270 945 240 945 C236 880 232 840 220 800Z" fill="#000" opacity=".15"/>`,
+ tutu:c=>`<path d="M136 270 L150 300 L250 300 L264 270 L272 290 L270 520 L130 520 L128 290Z" fill="${c}"/><ellipse cx="200" cy="580" rx="130" ry="60" fill="${c}"/><ellipse cx="200" cy="570" rx="140" ry="52" fill="#fff" opacity=".35"/><ellipse cx="200" cy="600" rx="120" ry="40" fill="#000" opacity=".1"/>`,
+};
+const shoeSVG={
+ sneakers:c=>`<path d="M140 912 L190 912 L194 936 Q166 946 134 936Z" fill="${c}" stroke="#333" stroke-width="2"/><path d="M210 912 L260 912 L266 936 Q234 946 206 936Z" fill="${c}" stroke="#333" stroke-width="2"/><path d="M148 924 L186 924 M214 924 L252 924" stroke="#333" stroke-width="2"/>`,
+ heels:c=>`<path d="M142 914 L190 914 L196 940 L186 942 L176 926 L156 930 L150 950 L142 950Z" fill="${c}"/><path d="M258 914 L210 914 L204 940 L214 942 L224 926 L244 930 L250 950 L258 950Z" fill="${c}"/>`,
+ boots:c=>`<path d="M140 760 L192 760 L192 936 Q166 946 134 936 L138 920Z" fill="${c}"/><path d="M260 760 L208 760 L208 936 Q234 946 266 936 L262 920Z" fill="${c}"/><path d="M140 760 L192 760" stroke="#000" stroke-opacity=".3" stroke-width="3"/><path d="M260 760 L208 760" stroke="#000" stroke-opacity=".3" stroke-width="3"/>`,
+ flats:c=>`<path d="M142 914 L190 914 L192 934 Q166 942 138 934Z" fill="${c}"/><path d="M258 914 L210 914 L208 934 Q234 942 262 934Z" fill="${c}"/><circle cx="166" cy="924" r="4" fill="#fff"/><circle cx="234" cy="924" r="4" fill="#fff"/>`,
+};
+const bagSVG={none:()=>'',
+ hand:c=>`<path d="M296 470 C292 440 326 440 322 470" stroke="#5a2a3c" stroke-width="4" fill="none"/><rect x="280" y="468" width="56" height="44" rx="10" fill="${c}" stroke="#5a2a3c" stroke-width="2"/><circle cx="308" cy="490" r="4" fill="#f5c66b"/>`,
+ tote:c=>`<path d="M84 470 C82 440 118 440 116 470" stroke="#5a2a3c" stroke-width="4" fill="none"/><path d="M70 470 L130 470 L124 540 L76 540Z" fill="${c}" stroke="#5a2a3c" stroke-width="2"/>`,
+ clutch:c=>`<rect x="282" y="462" width="54" height="30" rx="6" fill="${c}" stroke="#5a2a3c" stroke-width="2" transform="rotate(-8 309 477)"/><circle cx="309" cy="470" r="3" fill="#f5c66b"/>`,
+};
+function renderBody(){
+ const s=state,b=$('#body');b.style.setProperty('--skin',s.skin);
+ const clone=$('#face').cloneNode(true);['top','topShine'].forEach(i=>{const e=clone.querySelector('#'+i);if(e)e.remove()});
+ $('#headSlot').innerHTML=clone.innerHTML;
+ const dressed=s.dress!=='none';
+ $('#dress').innerHTML=dressSVG[s.dress](s.topColor);
+ $('#top2').innerHTML=dressed?'':topSVG[s.top](s.topColor);
+ $('#bottom').innerHTML=dressed?'':bottomSVG[s.bottom](s.bottomColor);
+ $('#shoes').innerHTML=shoeSVG[s.shoes](s.shoeColor);
+ $('#bag').innerHTML=bagSVG[s.bag](s.topColor==='#ffffff'?'#f5c66b':s.topColor);
+}
+/* ---------- Steps ---------- */
+let step=1;
+function go(n){step=n;$('#points').textContent=points;[1,2,3].forEach(i=>$('#step'+i).hidden=i!==n);
+ document.querySelectorAll('#steps span').forEach((e,i)=>e.classList.toggle('on',i+1===n));
+ if(n===3){$('#model').innerHTML=$('#body').outerHTML;const st=Math.min(5,1+Math.floor(points/60));$('#stars').textContent='★'.repeat(st)+'☆'.repeat(5-st);confetti()}
+ window.scrollTo({top:0,behavior:'smooth'})}
+function confetti(){const p=$('#podium');for(let i=0;i<60;i++){const c=document.createElement('span');c.className='confetti';c.style.left=Math.random()*100+'%';c.style.background=['#ff4f8b','#f5c66b','#58c7d6','#fff','#b57edc'][i%5];c.style.animationDuration=(2.5+Math.random()*2)+'s';c.style.animationDelay=(Math.random()*1.5)+'s';p.appendChild(c);setTimeout(()=>c.remove(),5000)}}
+const tabs2=$('#tabs2');
+cats2.forEach(c=>{const b=document.createElement('button');b.className='tab';b.role='tab';b.textContent=c.label;b.dataset.id=c.id;b.onclick=()=>select2(c.id);tabs2.appendChild(b)});
+function select2(id){cur=id;document.querySelectorAll('#tabs2 .tab').forEach(t=>t.setAttribute('aria-selected',t.dataset.id===id));
+ const c=cats2.find(x=>x.id===id);$('#panelTitle2').textContent=c.label.replace(/^\S+\s/,'');
+ const box=$('#swatches2');box.innerHTML='';
+ c.opts.forEach(([val,label])=>{const b=document.createElement('button');b.className='sw';b.dataset.val=val;
+  const d=document.createElement('span');d.className='dot';
+  if(c.type==='color'){d.style.background=val;}else{d.style.background='var(--bg)';d.textContent=icons[val]||'•'}
+  b.appendChild(d);b.appendChild(document.createTextNode(label));b.onclick=()=>apply(id,val,label);box.appendChild(b)});
+ markPressed()}
+$('#next1').onclick=()=>{go(2);select2('dress');toast('Au dressing ! 👗')};
+$('#back2').onclick=()=>{go(1);select(cur in state&&cats.find(c=>c.id===cur)?cur:'skin')};
+$('#undo2').onclick=()=>{if(!history.length)return toast('Rien à annuler');state=history.pop();render();toast('Annulé')};
+$('#random2').onclick=()=>{history.push({...state});Object.assign(state,{dress:pick(dresses),top:pick(tops),bottom:pick(bottoms),shoes:pick(shoesL),bag:pick(bags),topColor:pick(clothColors),bottomColor:pick(clothColors),shoeColor:pick(clothColors)});points+=50;render();toast('Tenue surprise ! +50 ✨')};
+$('#next2').onclick=()=>{points+=100;go(3);toast('Sur le podium ! +100 🌟')};
+$('#back3').onclick=()=>{go(2);select2('dress')};
+$('#photo3').onclick=()=>{$('#photoSvg').innerHTML=$('#body').outerHTML;$('#photoBox').classList.add('show')};
+$('#again').onclick=()=>{$('#random').onclick();$('#random2').onclick();go(3)};
+$('#restart').onclick=()=>{state={...def};points=0;history=[];render();go(1);select('skin');toast('On recommence !')};
 
 select('skin');render();
 </script>
