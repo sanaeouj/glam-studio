@@ -76,93 +76,80 @@ main{display:grid;grid-template-columns:1fr;gap:14px}
 <main>
   <div class="mirror" id="mirror">
     <div class="bulbs" id="bulbs"></div>
-    <svg id="face" viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg" aria-label="Visage à maquiller" style="--skin:#f2c4a4">
+    <svg id="face" viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg" aria-label="Bimbo à maquiller" style="--skin:#f2c4a4">
       <defs>
-        <clipPath id="faceClip"><path d="M200 90 C120 90 95 160 100 250 C105 330 150 400 200 400 C250 400 295 330 300 250 C305 160 280 90 200 90 Z"/></clipPath>
-        <clipPath id="eyeL"><path d="M118 236 Q150 210 184 236 Q150 256 118 236Z"/></clipPath>
-        <clipPath id="eyeR"><path d="M216 236 Q250 210 282 236 Q250 256 216 236Z"/></clipPath>
-        <radialGradient id="faceShade" cx=".5" cy=".42" r=".62"><stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".22"/></radialGradient>
-        <radialGradient id="faceLight" cx=".5" cy=".3" r=".4"><stop offset="0" stop-color="#fff" stop-opacity=".22"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
-        <linearGradient id="neckShade" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#000" stop-opacity=".32"/><stop offset=".6" stop-color="#000" stop-opacity="0"/></linearGradient>
-        <radialGradient id="irisG" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#fff" stop-opacity=".35"/><stop offset=".7" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".55"/></radialGradient>
-        <radialGradient id="scleraG" cx=".5" cy=".5" r=".6"><stop offset=".7" stop-color="#fff"/><stop offset="1" stop-color="#d9c9c9"/></radialGradient>
-        <linearGradient id="lipShade" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#000" stop-opacity=".18"/><stop offset=".45" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".22"/></linearGradient>
-        <radialGradient id="shine" cx=".5" cy=".3" r=".6"><stop offset="0" stop-color="#fff" stop-opacity=".75"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
-        <radialGradient id="soft" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#000" stop-opacity=".14"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
-        <filter id="blur3"><feGaussianBlur stdDeviation="3"/></filter>
-        <filter id="blur6"><feGaussianBlur stdDeviation="6"/></filter>
+        <clipPath id="faceClip"><path d="M200 90 C122 90 96 160 102 245 C107 320 150 400 200 400 C250 400 293 320 298 245 C304 160 278 90 200 90 Z"/></clipPath>
+        <clipPath id="eyeL"><path d="M112 242 C122 212 176 208 190 240 C178 262 126 264 112 242Z"/></clipPath>
+        <clipPath id="eyeR"><path d="M288 242 C278 212 224 208 210 240 C222 262 274 264 288 242Z"/></clipPath>
+        <radialGradient id="irisG" cx=".5" cy=".55" r=".55"><stop offset="0" stop-color="#fff" stop-opacity=".5"/><stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".6"/></radialGradient>
+        <linearGradient id="lipShade" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".18"/><stop offset=".5" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".28"/></linearGradient>
+        <radialGradient id="shine" cx=".5" cy=".3" r=".6"><stop offset="0" stop-color="#fff" stop-opacity=".9"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+        <linearGradient id="hairShine" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".35"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/></linearGradient>
+        <filter id="blur4"><feGaussianBlur stdDeviation="4"/></filter>
       </defs>
       <g id="hairBack"></g>
       <!-- shoulders & neck -->
-      <path d="M60 500 C70 440 130 425 165 420 L235 420 C270 425 330 440 340 500 Z" fill="#ff8fb6" id="top"/>
-      <path d="M160 370 L160 428 Q200 448 240 428 L240 370 Z" fill="var(--skin)" id="neck"/>
-      <path d="M160 370 L160 428 Q200 448 240 428 L240 370 Z" fill="url(#neckShade)"/>
+      <path d="M70 500 C80 445 135 428 165 422 L235 422 C265 428 320 445 330 500 Z" fill="#ff5fa2" id="top"/>
+      <path d="M90 500 C100 462 140 446 166 440 L234 440 C260 446 300 462 310 500Z" fill="#fff" opacity=".25"/>
+      <path d="M166 372 L166 432 Q200 452 234 432 L234 372 Z" fill="var(--skin)" id="neck"/>
+      <path d="M166 372 L166 400 Q200 418 234 400 L234 372Z" fill="#000" opacity=".16"/>
       <!-- ears -->
-      <g class="skinpart" fill="var(--skin)"><path d="M100 248 C86 240 80 262 86 282 C90 298 100 300 106 290Z"/><path d="M300 248 C314 240 320 262 314 282 C310 298 300 300 294 290Z"/></g>
-      <path d="M94 258 C90 268 92 282 98 286" stroke="#000" stroke-opacity=".18" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-      <path d="M306 258 C310 268 308 282 302 286" stroke="#000" stroke-opacity=".18" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <g class="skinpart" fill="var(--skin)"><path d="M104 250 C90 242 84 262 90 282 C94 296 104 298 108 290Z"/><path d="M296 250 C310 242 316 262 310 282 C306 296 296 298 292 290Z"/></g>
       <g id="earrings"></g>
       <g class="face-g">
-        <path id="skin" d="M200 90 C120 90 95 160 100 250 C105 330 150 400 200 400 C250 400 295 330 300 250 C305 160 280 90 200 90 Z" fill="var(--skin)"/>
+        <path id="skin" d="M200 90 C122 90 96 160 102 245 C107 320 150 400 200 400 C250 400 293 320 298 245 C304 160 278 90 200 90 Z" fill="var(--skin)"/>
         <g clip-path="url(#faceClip)">
-          <rect x="90" y="80" width="220" height="330" fill="url(#faceShade)"/>
-          <rect x="90" y="80" width="220" height="330" fill="url(#faceLight)"/>
-          <!-- temple / jaw shadows -->
-          <ellipse cx="200" cy="402" rx="55" ry="10" fill="#000" opacity=".05" filter="url(#blur6)"/>
+          <!-- cel shadows -->
+          <path d="M96 150 C90 230 100 330 150 400 L96 400Z" fill="#000" opacity=".09"/>
+          <path d="M304 150 C310 230 300 330 250 400 L304 400Z" fill="#000" opacity=".09"/>
+          <path d="M150 400 C170 384 230 384 250 400Z" fill="#000" opacity=".1"/>
           <!-- blush -->
-          <ellipse id="blushL" cx="146" cy="300" rx="30" ry="18" fill="transparent" opacity=".5" filter="url(#blur6)"/>
-          <ellipse id="blushR" cx="254" cy="300" rx="30" ry="18" fill="transparent" opacity=".5" filter="url(#blur6)"/>
+          <ellipse id="blushL" cx="140" cy="300" rx="30" ry="16" fill="transparent" opacity=".55" filter="url(#blur4)"/>
+          <ellipse id="blushR" cx="260" cy="300" rx="30" ry="16" fill="transparent" opacity=".55" filter="url(#blur4)"/>
           <!-- eyeshadow -->
-          <path id="shadowL" d="M112 232 Q150 196 190 232 Q150 218 112 232Z" fill="transparent" opacity=".75" filter="url(#blur3)"/>
-          <path id="shadowR" d="M210 232 Q250 196 288 232 Q250 218 210 232Z" fill="transparent" opacity=".75" filter="url(#blur3)"/>
-          <!-- eye sockets -->
-          <ellipse cx="150" cy="236" rx="40" ry="18" fill="url(#soft)"/>
-          <ellipse cx="250" cy="236" rx="40" ry="18" fill="url(#soft)"/>
+          <path id="shadowL" d="M104 236 Q150 186 196 236 Q150 220 104 236Z" fill="transparent" opacity=".8" filter="url(#blur4)"/>
+          <path id="shadowR" d="M204 236 Q250 186 296 236 Q250 220 204 236Z" fill="transparent" opacity=".8" filter="url(#blur4)"/>
         </g>
-        <!-- eyebrows -->
-        <path id="browL" d="M114 206 C130 190 160 188 184 199 C170 196 136 198 118 210Z" fill="#5a3a2e"/>
-        <path id="browR" d="M286 206 C270 190 240 188 216 199 C230 196 264 198 282 210Z" fill="#5a3a2e"/>
+        <!-- eyebrows (thin, arched) -->
+        <path id="browL" d="M110 200 C126 182 158 180 186 190 C160 188 130 192 112 206Z" fill="#5a3a2e"/>
+        <path id="browR" d="M290 200 C274 182 242 180 214 190 C240 188 270 192 288 206Z" fill="#5a3a2e"/>
         <!-- eyes -->
         <g>
-          <path d="M118 236 Q150 210 184 236 Q150 256 118 236Z" fill="url(#scleraG)"/>
-          <path d="M216 236 Q250 210 282 236 Q250 256 216 236Z" fill="url(#scleraG)"/>
-          <g clip-path="url(#eyeL)"><circle id="irisL" cx="153" cy="236" r="13" fill="#6b4a3a"/><circle cx="153" cy="236" r="13" fill="url(#irisG)"/><circle cx="153" cy="236" r="5.5" fill="#0d0d0d"/><circle cx="157" cy="231" r="3" fill="#fff"/><circle cx="149" cy="240" r="1.5" fill="#fff" opacity=".7"/><path d="M118 236 Q150 210 184 236" stroke="#000" stroke-opacity=".25" stroke-width="7" fill="none" filter="url(#blur3)"/></g>
-          <g clip-path="url(#eyeR)"><circle id="irisR" cx="247" cy="236" r="13" fill="#6b4a3a"/><circle cx="247" cy="236" r="13" fill="url(#irisG)"/><circle cx="247" cy="236" r="5.5" fill="#0d0d0d"/><circle cx="251" cy="231" r="3" fill="#fff"/><circle cx="243" cy="240" r="1.5" fill="#fff" opacity=".7"/><path d="M216 236 Q250 210 282 236" stroke="#000" stroke-opacity=".25" stroke-width="7" fill="none" filter="url(#blur3)"/></g>
+          <path d="M112 242 C122 212 176 208 190 240 C178 262 126 264 112 242Z" fill="#fff"/>
+          <path d="M288 242 C278 212 224 208 210 240 C222 262 274 264 288 242Z" fill="#fff"/>
+          <g clip-path="url(#eyeL)"><circle id="irisL" cx="154" cy="240" r="19" fill="#6b4a3a"/><circle cx="154" cy="240" r="19" fill="url(#irisG)"/><circle cx="154" cy="241" r="8" fill="#0d0d0d"/><circle cx="160" cy="232" r="5" fill="#fff"/><circle cx="147" cy="247" r="2.5" fill="#fff" opacity=".85"/><path d="M108 236 C122 206 176 204 194 236" stroke="#000" stroke-opacity=".28" stroke-width="8" fill="none" filter="url(#blur4)"/></g>
+          <g clip-path="url(#eyeR)"><circle id="irisR" cx="246" cy="240" r="19" fill="#6b4a3a"/><circle cx="246" cy="240" r="19" fill="url(#irisG)"/><circle cx="246" cy="241" r="8" fill="#0d0d0d"/><circle cx="252" cy="232" r="5" fill="#fff"/><circle cx="239" cy="247" r="2.5" fill="#fff" opacity=".85"/><path d="M292 236 C278 206 224 204 206 236" stroke="#000" stroke-opacity=".28" stroke-width="8" fill="none" filter="url(#blur4)"/></g>
           <!-- eyelids (blink) -->
-          <g clip-path="url(#eyeL)"><path class="eyelid" id="lidL" d="M114 236 Q150 206 188 236 Q150 262 114 236Z" fill="var(--skin)"/></g>
-          <g clip-path="url(#eyeR)"><path class="eyelid" id="lidR" d="M212 236 Q250 206 288 236 Q250 262 212 236Z" fill="var(--skin)"/></g>
-          <!-- lash line & crease -->
-          <path d="M118 236 Q150 210 184 236" stroke="#2b1d1a" stroke-width="2" fill="none" stroke-linecap="round"/>
-          <path d="M216 236 Q250 210 282 236" stroke="#2b1d1a" stroke-width="2" fill="none" stroke-linecap="round"/>
-          <path d="M122 226 Q150 204 182 224" stroke="#000" stroke-opacity=".15" stroke-width="2" fill="none" stroke-linecap="round"/>
-          <path d="M218 224 Q250 204 278 226" stroke="#000" stroke-opacity=".15" stroke-width="2" fill="none" stroke-linecap="round"/>
-          <path d="M124 243 Q150 254 178 243" stroke="#000" stroke-opacity=".12" stroke-width="1.5" fill="none"/>
-          <path d="M222 243 Q250 254 276 243" stroke="#000" stroke-opacity=".12" stroke-width="1.5" fill="none"/>
-          <!-- eyeliner -->
-          <path id="linerL" d="M118 236 Q150 208 184 234 L192 227" stroke="transparent" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-          <path id="linerR" d="M282 236 Q250 208 216 234 L208 227" stroke="transparent" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-          <!-- lashes -->
-          <g id="lashes" stroke="#2b1d1a" stroke-width="2" stroke-linecap="round" fill="none" opacity="0">
-            <path d="M124 231 l-6 -6"/><path d="M134 224 l-4 -8"/><path d="M146 219 l-1 -9"/><path d="M160 219 l3 -9"/><path d="M173 224 l5 -8"/><path d="M182 231 l7 -5"/>
-            <path d="M276 231 l6 -6"/><path d="M266 224 l4 -8"/><path d="M254 219 l1 -9"/><path d="M240 219 l-3 -9"/><path d="M227 224 l-5 -8"/><path d="M218 231 l-7 -5"/>
-          </g>
+          <g clip-path="url(#eyeL)"><path class="eyelid" id="lidL" d="M108 242 C120 206 180 204 194 240 C182 268 120 270 108 242Z" fill="var(--skin)"/></g>
+          <g clip-path="url(#eyeR)"><path class="eyelid" id="lidR" d="M292 242 C280 206 220 204 206 240 C218 268 280 270 292 242Z" fill="var(--skin)"/></g>
+          <!-- thick upper lash line (always) -->
+          <path d="M112 242 C122 212 176 208 190 240 C178 222 126 224 112 242Z" fill="#241a18"/>
+          <path d="M288 242 C278 212 224 208 210 240 C222 222 274 224 288 242Z" fill="#241a18"/>
+          <!-- lower lash line -->
+          <path d="M120 250 C140 262 170 262 188 244" stroke="#241a18" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <path d="M280 250 C260 262 230 262 212 244" stroke="#241a18" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <!-- eyeliner (colored) -->
+          <path id="linerL" d="M112 242 C122 212 176 208 190 240 L200 230" stroke="transparent" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <path id="linerR" d="M288 242 C278 212 224 208 210 240 L200 230" stroke="transparent" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <!-- long doll lashes (always on, extra when liner) -->
+          <g stroke="#241a18" stroke-width="2.2" stroke-linecap="round" fill="none"><path d="M114 237 q-5 -3 -15 -5"/><path d="M129 223 q-2 -6 -6 -11"/><path d="M151 218 q0 -5 0 -11"/><path d="M174 223 q1 -4 3 -8"/><path d="M188 235 q1 -3 4 -5"/><path d="M286 237 q5 -3 15 -5"/><path d="M271 223 q2 -6 6 -11"/><path d="M249 218 q0 -5 0 -11"/><path d="M226 223 q-1 -4 -3 -8"/><path d="M212 235 q-1 -3 -4 -5"/></g>
+          <g id="lashes" stroke="#241a18" stroke-width="2.2" stroke-linecap="round" fill="none" opacity="0"><path d="M121 229 q-3 -5 -11 -10"/><path d="M140 219 q-1 -6 -3 -13"/><path d="M163 219 q1 -5 2 -11"/><path d="M182 229 q1 -4 5 -8"/><path d="M279 229 q3 -5 11 -10"/><path d="M260 219 q1 -6 3 -13"/><path d="M237 219 q-1 -5 -2 -11"/><path d="M218 229 q-1 -4 -5 -8"/></g>
         </g>
-        <!-- nose -->
-        <path d="M194 250 C190 270 184 285 183 295" stroke="#000" stroke-opacity=".12" stroke-width="5" fill="none" stroke-linecap="round" filter="url(#blur3)"/>
-        <path d="M206 250 C210 270 216 285 217 295" stroke="#000" stroke-opacity=".12" stroke-width="5" fill="none" stroke-linecap="round" filter="url(#blur3)"/>
-        <path d="M184 296 C180 302 186 308 194 304 Q200 300 206 304 C214 308 220 302 216 296" stroke="#000" stroke-opacity=".28" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-        <ellipse cx="200" cy="292" rx="7" ry="5" fill="#fff" opacity=".25" filter="url(#blur3)"/>
-        <!-- lips -->
-        <path id="lipsTop" d="M166 338 C176 330 188 328 196 334 Q200 331 204 334 C212 328 224 330 234 338 Q200 346 166 338Z" fill="#d9958a"/>
-        <path id="lipsBot" d="M166 338 C176 358 190 366 200 366 C210 366 224 358 234 338 Q200 346 166 338Z" fill="#d9958a"/>
-        <path d="M166 338 C176 330 188 328 196 334 Q200 331 204 334 C212 328 224 330 234 338 C224 358 210 366 200 366 C190 366 176 358 166 338Z" fill="url(#lipShade)"/>
-        <path d="M168 338 Q200 344 232 338" stroke="#000" stroke-opacity=".35" stroke-width="1.5" fill="none"/>
-        <ellipse id="lipGloss" cx="200" cy="352" rx="16" ry="6" fill="url(#shine)" opacity="0"/>
-        <ellipse cx="200" cy="376" rx="18" ry="4" fill="#000" opacity=".06" filter="url(#blur3)"/>
-        <circle id="mole" cx="226" cy="320" r="3" fill="#5a3a2e" opacity="0"/>
+        <!-- small nose -->
+        <path d="M192 296 C188 302 192 306 198 304 Q200 303 202 304 C208 306 212 302 208 296" stroke="#000" stroke-opacity=".3" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+        <path d="M196 270 C194 280 192 288 192 292" stroke="#000" stroke-opacity=".08" stroke-width="4" fill="none" stroke-linecap="round" filter="url(#blur4)"/>
+        <!-- plump glossy lips -->
+        <path id="lipsTop" d="M164 338 C174 326 190 326 197 334 Q200 331 203 334 C210 326 226 326 236 338 Q200 348 164 338Z" fill="#d9958a"/>
+        <path id="lipsBot" d="M164 338 C172 364 188 374 200 374 C212 374 228 364 236 338 Q200 348 164 338Z" fill="#d9958a"/>
+        <path d="M164 338 C174 326 190 326 197 334 Q200 331 203 334 C210 326 226 326 236 338 C228 364 212 374 200 374 C188 374 172 364 164 338Z" fill="url(#lipShade)"/>
+        <path d="M168 339 Q200 346 232 339" stroke="#000" stroke-opacity=".35" stroke-width="1.5" fill="none"/>
+        <ellipse cx="200" cy="356" rx="14" ry="6" fill="url(#shine)" opacity=".6"/>
+        <ellipse id="lipGloss" cx="188" cy="352" rx="9" ry="4" fill="#fff" opacity="0"/>
+        <circle id="mole" cx="228" cy="322" r="3" fill="#5a3a2e" opacity="0"/>
         <g id="glasses"></g>
       </g>
       <g id="hairFront"></g>
+      <g id="hairShine"></g>
       <g id="hat"></g>
       <g id="stickers"></g>
     </svg>
@@ -239,8 +226,8 @@ const hairFront={
 const earringSVG={none:()=>'',hoop:()=>`<circle cx="97" cy="302" r="12" stroke="#f5c66b" stroke-width="4" fill="none"/><circle cx="303" cy="302" r="12" stroke="#f5c66b" stroke-width="4" fill="none"/>`,
  drop:()=>`<line x1="96" y1="292" x2="96" y2="318" stroke="#f5c66b" stroke-width="3"/><path d="M96 316 l-10 14 l10 14 l10 -14Z" fill="#ff4f8b"/><line x1="304" y1="292" x2="304" y2="318" stroke="#f5c66b" stroke-width="3"/><path d="M304 316 l-10 14 l10 14 l10 -14Z" fill="#ff4f8b"/>`,
  stud:()=>`<circle cx="96" cy="292" r="7" fill="#fff" stroke="#ddd"/><circle cx="304" cy="292" r="7" fill="#fff" stroke="#ddd"/>`};
-const glassSVG={none:()=>'',round:()=>`<g stroke="#5a2a3c" stroke-width="4" fill="rgba(255,255,255,.2)"><circle cx="150" cy="237" r="36"/><circle cx="250" cy="237" r="36"/><line x1="186" y1="237" x2="214" y2="237"/></g>`,
- cat:()=>`<g stroke="#ff4f8b" stroke-width="4" fill="rgba(255,200,230,.25)"><path d="M112 225 L185 230 L178 262 L120 258 Z"/><path d="M288 225 L215 230 L222 262 L280 258 Z"/><line x1="185" y1="235" x2="215" y2="235"/></g>`,
+const glassSVG={none:()=>'',round:()=>`<g stroke="#5a2a3c" stroke-width="4" fill="rgba(255,255,255,.2)"><circle cx="150" cy="240" r="42"/><circle cx="250" cy="240" r="42"/><line x1="192" y1="240" x2="208" y2="240"/></g>`,
+ cat:()=>`<g stroke="#ff4f8b" stroke-width="4" fill="rgba(255,200,230,.25)"><path d="M104 222 L194 230 L186 268 L112 262 Z"/><path d="M296 222 L206 230 L214 268 L288 262 Z"/><line x1="194" y1="238" x2="206" y2="238"/></g>`,
  heart:()=>`<g stroke="#ff4f8b" stroke-width="4" fill="rgba(255,79,139,.2)"><path d="M150 262 C125 245 115 230 128 218 C137 210 148 214 150 222 C152 214 163 210 172 218 C185 230 175 245 150 262Z"/><path d="M250 262 C225 245 215 230 228 218 C237 210 248 214 250 222 C252 214 263 210 272 218 C285 230 275 245 250 262Z"/><line x1="172" y1="235" x2="228" y2="235"/></g>`};
 const hatSVG={none:()=>'',crown:()=>`<path d="M140 90 L160 50 L185 85 L200 40 L215 85 L240 50 L260 90 Z" fill="#f5c66b" stroke="#d9a63b" stroke-width="3"/><circle cx="200" cy="55" r="6" fill="#ff4f8b"/><circle cx="160" cy="62" r="4" fill="#58c7d6"/><circle cx="240" cy="62" r="4" fill="#58c7d6"/>`,
  bow:()=>`<g transform="translate(265,95)"><path d="M0 0 C-30 -25 -30 25 0 0 C30 -25 30 25 0 0Z" fill="#ff4f8b" stroke="#c2185b" stroke-width="2"/><circle r="6" fill="#ffb3cc"/></g>`,
@@ -262,6 +249,7 @@ function render(){
  $('#lipGloss').setAttribute('opacity',s.lips==='#d9958a'?0:1);
  $('#hairBack').innerHTML=hairBack[s.hairStyle](s.hairColor);
  $('#hairFront').innerHTML=hairFront[s.hairStyle](s.hairColor);
+ $('#hairShine').innerHTML=hairFront[s.hairStyle]('url(#hairShine)').replace(/<circle[^>]*>/g,'');
  const bc=s.hairColor==='#e9c27c'?'#8a6a3a':s.hairColor==='#f2f0ee'?'#888':'#4a2e24';$('#browL').setAttribute('fill',bc);$('#browR').setAttribute('fill',bc);
  $('#earrings').innerHTML=earringSVG[s.earrings]();
  $('#glasses').innerHTML=glassSVG[s.glasses]();
