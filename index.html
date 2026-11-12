@@ -26,7 +26,7 @@ main{display:grid;grid-template-columns:1fr;gap:14px}
 .bulb{position:absolute;width:14px;height:14px;border-radius:50%;background:#fff3c4;box-shadow:0 0 12px 4px #ffe27a;animation:glow 2.4s ease-in-out infinite}
 @keyframes glow{0%,100%{opacity:.75}50%{opacity:1;box-shadow:0 0 18px 7px #ffe27a}}
 .mirror svg{width:100%;height:100%;display:block}
-.brush{position:absolute;width:30px;height:30px;pointer-events:none;transform:translate(-50%,-50%) rotate(-30deg);display:none;z-index:5;filter:drop-shadow(0 4px 6px rgba(0,0,0,.25))}
+.brush{position:absolute;width:22px;height:22px;pointer-events:none;transform:translate(-50%,-50%) rotate(-30deg);display:none;z-index:5;filter:drop-shadow(0 4px 6px rgba(0,0,0,.25))}
 .brush.on{display:block}
 .spark{position:absolute;width:10px;height:10px;pointer-events:none;z-index:6;animation:pop .9s ease-out forwards}
 @keyframes pop{0%{transform:translate(-50%,-50%) scale(.2) rotate(0);opacity:1}100%{transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(1.4) rotate(180deg);opacity:0}}
@@ -39,9 +39,9 @@ main{display:grid;grid-template-columns:1fr;gap:14px}
 .tab[aria-selected=true]{background:var(--accent);color:#fff;box-shadow:0 6px 14px rgba(255,79,139,.4)}
 .tab:focus-visible,.sw:focus-visible,.btn:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 .panel-title{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin:0}
-.swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(52px,1fr));gap:10px}
+.swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(44px,1fr));gap:8px}
 .sw{border:0;background:transparent;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;padding:0;font:600 11px var(--body);color:var(--muted)}
-.sw .dot{width:46px;height:46px;border-radius:50%;border:3px solid #fff;box-shadow:0 3px 8px rgba(90,42,60,.25);transition:transform .2s;display:grid;place-items:center;font-size:22px;overflow:hidden}
+.sw .dot{width:32px;height:32px;border-radius:50%;border:2px solid #fff;box-shadow:0 3px 8px rgba(90,42,60,.25);transition:transform .2s;display:grid;place-items:center;font-size:16px;overflow:hidden}
 .sw:hover .dot{transform:scale(1.12) rotate(-6deg)}
 .sw[aria-pressed=true] .dot{box-shadow:0 0 0 3px var(--accent),0 3px 8px rgba(90,42,60,.25);transform:scale(1.1)}
 .sw .dot.none{background:repeating-linear-gradient(45deg,#eee 0 6px,#fff 6px 12px)}
@@ -268,10 +268,10 @@ function select(id){cur=id;document.querySelectorAll('.tab').forEach(t=>t.setAtt
 
 /* ---------- Effects ---------- */
 const mirror=$('#mirror'),brush=$('#brush');
-mirror.addEventListener('pointermove',e=>{const r=mirror.getBoundingClientRect();brush.classList.add('on');brush.style.left=(e.clientX-r.left)+'px';brush.style.top=(e.clientY-r.top)+'px'});
+mirror.addEventListener('pointermove',e=>{if(touch)return;const r=mirror.getBoundingClientRect();brush.classList.add('on');brush.style.left=(e.clientX-r.left)+'px';brush.style.top=(e.clientY-r.top)+'px'});
 mirror.addEventListener('pointerleave',()=>brush.classList.remove('on'));
 mirror.addEventListener('pointerdown',e=>{const r=mirror.getBoundingClientRect();burst(e.clientX-r.left,e.clientY-r.top,8)});
-if(!matchMedia('(pointer:fine)').matches)mirror.classList.add('hand');
+const touch=!matchMedia('(pointer:fine)').matches;if(touch)mirror.classList.add('hand');
 const sparkShapes=['✦','✧','❤','★','•'];
 function burst(x,y,n=14){const r=mirror.getBoundingClientRect();x=x??r.width/2;y=y??r.height/2;
  for(let i=0;i<n;i++){const s=document.createElement('span');s.className='spark';s.textContent=sparkShapes[i%5];
