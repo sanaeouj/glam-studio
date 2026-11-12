@@ -80,6 +80,7 @@ main{display:grid;grid-template-columns:1fr;gap:14px}
       <defs>
         <radialGradient id="cheek" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="var(--c)" stop-opacity=".75"/><stop offset="1" stop-color="var(--c)" stop-opacity="0"/></radialGradient>
         <linearGradient id="shine" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".6"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+        <clipPath id="faceClip"><path d="M200 90 C120 90 95 160 100 250 C105 330 150 400 200 400 C250 400 295 330 300 250 C305 160 280 90 200 90 Z"/></clipPath>
         <clipPath id="eyeL"><ellipse cx="150" cy="235" rx="30" ry="17"/></clipPath>
         <clipPath id="eyeR"><ellipse cx="250" cy="235" rx="30" ry="17"/></clipPath>
       </defs>
@@ -97,8 +98,8 @@ main{display:grid;grid-template-columns:1fr;gap:14px}
         <!-- face -->
         <path id="skin" d="M200 90 C120 90 95 160 100 250 C105 330 150 400 200 400 C250 400 295 330 300 250 C305 160 280 90 200 90 Z" fill="#f2c4a4"/>
         <!-- blush -->
-        <ellipse id="blushL" cx="140" cy="300" rx="38" ry="24" fill="transparent" opacity=".6"/>
-        <ellipse id="blushR" cx="260" cy="300" rx="38" ry="24" fill="transparent" opacity=".6"/>
+        <g clip-path="url(#faceClip)"><ellipse id="blushL" cx="148" cy="298" rx="30" ry="20" fill="transparent" opacity=".55"/>
+        <ellipse id="blushR" cx="252" cy="298" rx="30" ry="20" fill="transparent" opacity=".55"/></g>
         <!-- eyeshadow -->
         <path id="shadowL" d="M115 225 Q150 190 185 225 Q150 215 115 225Z" fill="transparent" opacity=".8"/>
         <path id="shadowR" d="M215 225 Q250 190 285 225 Q250 215 215 225Z" fill="transparent" opacity=".8"/>
